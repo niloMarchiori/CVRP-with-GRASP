@@ -1,2 +1,3 @@
+import sys
 
-print(True and True)
+print(sys.argv[1])

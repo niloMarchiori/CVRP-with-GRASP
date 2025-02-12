@@ -3,9 +3,8 @@ from Models.linkedlist import *
 class Graph():
     def __init__(self,n_nodes):
         self.size=n_nodes
-        self.NODES=[None for _ in range(n_nodes)]
+        self.NODES=[Graph_Node(n) for n in range(n_nodes)]
         self.adj=[[0]*n_nodes for _ in range(n_nodes)]
-        self.creat_nodes()
 
     def set_adj(self,matrix):
         self.adj=matrix
@@ -15,11 +14,7 @@ class Graph():
     
     def set_demand(self,demand_list):
         for costumer in range(len(demand_list)):
-            self.add_demand(demand_list[costumer],costumer)
-
-    def creat_nodes(self):
-        for n in range(self.size):
-            self.NODES[n]=Graph_Node(n)
+            self.add_demand(demand_list[costumer],costumer)    
     
 class Graph_Node(Node):
     def __init__(self,node_ID=0,demand=0):

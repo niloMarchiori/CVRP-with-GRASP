@@ -10,7 +10,7 @@ class Route(Linkedlist):
         node0=Graph_Node(0,0)
         self.add_node(node0)
 
-    def new_costumer(self,node:Graph_Node,graph:Graph_Node):
+    def new_costumer(self,node:Graph_Node):
         self.add_node(node)
         node.route=self
         self.free_capacity-=node.demand
@@ -29,7 +29,7 @@ class Solution():
 
         if not route:
             route=self.routes[-1]
-        route.new_costumer(node,graph)
+        route.new_costumer(node)
         last_node=route.tail
         self.cost+=graph.adj[last_node.back.node_ID][last_node.node_ID]
     

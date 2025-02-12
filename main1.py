@@ -10,21 +10,27 @@ def main():
     coment=instance['comment'].split()
     bks=int(coment[-1][:-1])
 
+    for i in range(instance['dimension']):
+        for j in range(i,instance['dimension']):
+            instance['edge_weight'][i][j]=int(round(instance['edge_weight'][i][j]))
+            instance['edge_weight'][j][i]=int(round(instance['edge_weight'][i][j]))
+
     graph=Graph(instance['dimension'])
     graph.set_adj(instance['edge_weight'])
     graph.set_demand(instance['demand'])
     max_capacity=instance['capacity']
-    max_iter=10000
+    max_iter=1000
     alpha=0.5
 
-    inicio=time()
-    solution=GRASP(graph,max_capacity, max_iter,alpha)
-    fim=time()
-    print('Tempo: ', (fim-inicio))
-    
-    
-    print(solution)
-    print(f"Erro:  {(solution.cost-bks)/bks*100.:2f} ")
+    for i in range(1):
+        inicio=time()
+        solution=GRASP(graph,max_capacity, max_iter,alpha)
+        fim=time()
+        print('Tempo: ', (fim-inicio))
+        
+        
+        print(solution)
+        print(f"Erro:  {(solution.cost-bks)/bks*100.:0f} ")
     
     
 

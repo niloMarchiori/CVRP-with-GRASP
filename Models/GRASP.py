@@ -2,6 +2,8 @@ import random as rd
 from Models.graph import Graph,Graph_Node
 from Models.solution import Solution
 from Models.linkedlist import Linkedlist
+import time
+
 
 def update_costs(graph:Graph,solution:Solution, candidates:list):
     max_cost=0
@@ -40,13 +42,26 @@ def creat_RCL(include_costs:dict,graph:Graph,solution:Solution,candidates:list,a
     return RCL
 
 def random_include(RCL:list,candidates:list,solution:Solution,graph:Graph):
+    # InicioTESTE------------------------
     # seed = rd.randint(0,2**30)
-    # # seed=148046798
+    # seed=148046798
     # rd.seed(seed)
     # print(seed)
+    # FIMTESTE------------------------
+
     i=rd.randint(0,len(RCL)-1)
     choosed_node=RCL[i]
-    candidates[choosed_node.node_ID]=False
+
+    # choosed_node=RCL[i]
+    # candidates[choosed_node.node_ID]=False
+    # InicioTESTE------------------------
+
+    global lista
+    i=lista.pop(0)
+    choosed_node=solution.NODES[i]
+    candidates[i]=False
+    # FIMTESTE---------------------------
+
 
     solution.insert_node(choosed_node,graph)
 
@@ -61,29 +76,34 @@ def Greedy_Randomized_Construction(graph:Graph,max_capacity:int,alpha:float):
         if include_costs['max_cost']==0:
             solution.new_route()
             include_costs=update_costs(graph,solution,candidates)
-            continue
 
         RCL=creat_RCL(include_costs,graph,solution,candidates, alpha)
         random_include(RCL,candidates,solution,graph)
+        # ===================
+        # print(solution)
+        # ===================
         n+=1
         include_costs=update_costs(graph,solution,candidates)
 
     for route in solution.routes:
-        route.add_node(Graph_Node(0,0))
-        node_ID=route.tail.node_ID
-        solution.cost+=graph.adj[0][node_ID]
+        solution.insert_node(Graph_Node(0,0),graph,route)
 
     return solution
 
 def Local_Search(solution):
     return solution
 
-
+lista=[]
 def GRASP(graph,max_capacity, max_iter,alpha):
 
     best_solution=Solution(graph,max_capacity,cost=float('inf'))
-
+    inicio=time.time()
+    # while (time.time()-inicio)<=300:
     for _ in range(max_iter):
+        # ==========================
+        global lista
+        lista=[21,31,19,17,13,7,26,12,1,16,30,27,24,29,18,8,9,22,15,10,25,5,20,14,28,11,4,23,3,2,6]
+        # ==========================
         curr_solution=Greedy_Randomized_Construction(graph,max_capacity,alpha)
         curr_solution=Local_Search(curr_solution)
         # print(f'__________________ Iteração {_} __________________')
