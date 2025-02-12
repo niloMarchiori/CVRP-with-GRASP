@@ -14,13 +14,13 @@ class Route(Linkedlist):
         self.add_node(node)
         node.route=self
         self.free_capacity-=node.demand
+        pass
 
 class Solution():
     def __init__(self,graph:Graph ,max_capacity:int,cost=0):
         self.max_capacity=max_capacity
         self.routes = [Route(self.max_capacity)]
         self.cost=cost
-        self.last_route=0
         self.NODES= Solution.creat_nodes(graph)
 
     def insert_node(self,node:Graph_Node, graph:Graph,route=None):
@@ -40,10 +40,10 @@ class Solution():
     def __str__(self):
         op=''
         for route in range(len(self.routes)):
-            op+=f'rota {route}:'
+            # op+=f'rota {route}:'
             op+=str(self.routes[route])
             op+='\n'
-        op+=f'Custo total: {self.cost}\n'
+        # op+=f'Custo total: {self.cost}\n'
         return op
     
     @staticmethod

@@ -53,7 +53,7 @@ class Linkedlist():
         node=self.head
         reverse=node.reverse
         while node.next:
-            string+=str(node.node_ID)+' - '
+            string+=str(node.node_ID)+' '
             node=node.next
         string+=str(self.tail.node_ID)
         

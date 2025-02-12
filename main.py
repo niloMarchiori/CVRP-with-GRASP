@@ -1,19 +1,39 @@
+import os
+import vrplib
 from Models.GRASP import *
-adj=[[0,51,32,15],
-     [51,0,90,10],
-     [32,90,0,18],
-     [15,10,18,0]]
+from time import time
 
-demand=[20,40,50,90]
 
-k=1
-max_capacity=120
-max_iter=1
-alpha=0.5
+def main():
+    instance = vrplib.read_instance(f'A-n32-k5.vrp')
+    
+    coment=instance['comment'].split()
+    bks=int(coment[-1][:-1])
 
-graph=Graph(len(demand))
-graph.set_adj(adj)
-graph.set_demand(demand)
+    for i in range(instance['dimension']):
+        for j in range(i,instance['dimension']):
+            instance['edge_weight'][i][j]=int(round(instance['edge_weight'][i][j]))
+            instance['edge_weight'][j][i]=int(round(instance['edge_weight'][i][j]))
+    
+    graph=Graph(instance['dimension'])
+    graph.set_adj(instance['edge_weight'])
+    graph.set_demand(instance['demand'])
+    max_capacity=instance['capacity']
+    max_iter=1000
+    alpha=0.5
 
-solution_CVRP=GRASP(graph,max_capacity, max_iter,alpha)
-print(solution_CVRP)
+    for i in range(100):
+        inicio=time()
+        solution=GRASP(graph,max_capacity, max_iter,alpha)
+        fim=time()
+        # print('Tempo: ', (fim-inicio))
+        print(solution)
+        print(solution.cost)
+        # print(f"Erro:  {(solution.cost-bks)/bks*100.:0f} ")
+    
+    
+
+if __name__=='__main__':
+    # main('./Instances_A/',k_max=10)
+    main()
+    
