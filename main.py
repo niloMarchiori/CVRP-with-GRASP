@@ -20,16 +20,18 @@ def main():
     graph.set_demand(instance['demand'])
     max_capacity=instance['capacity']
     max_iter=1000
-    alpha=0.5
+    
 
-    for i in range(100):
+    for i in range(11):
+        alpha=i/10
         inicio=time()
         solution=GRASP(graph,max_capacity, max_iter,alpha)
         fim=time()
-        # print('Tempo: ', (fim-inicio))
+        print('alpha:',alpha)
+        print('Tempo: ', (fim-inicio))
+        print(f"Erro:  {(solution.cost-bks)/bks*100:.0f} ")
         print(solution)
         print(solution.cost)
-        # print(f"Erro:  {(solution.cost-bks)/bks*100.:0f} ")
     
     
 
