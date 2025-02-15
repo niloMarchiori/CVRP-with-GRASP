@@ -95,7 +95,7 @@ def GRASP(graph,max_capacity, max_iter,alpha):
         curr_solution=local_search(curr_solution,graph)
         if curr_solution.cost<best_solution.cost:
             best_solution=curr_solution
-            temp_best=time.time-inicio
+            temp_best=time.time()-inicio
         iter_count+=1
 
     return best_solution,temp_best,iter_count
