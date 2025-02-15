@@ -22,7 +22,7 @@ for instance in read_dir(dir):
                  dados['custo'].append(sol['Custo'])
     df = pd.DataFrame(dados)
     print(df.to_string(index=False))
-    df.to_csv("Output/Ajuste_de_parametros/"+instance[:-3]+"json", index=False)
+    df.to_csv("Output/Ajuste_de_parametros/"+instance[:-3]+"csv", index=False)
 
                  
 
