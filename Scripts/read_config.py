@@ -14,9 +14,9 @@ def parse_parameters(file_path='config.txt'):
         line=line.split()
         if line[0]=='alpha_min':
             parameters['alpha'][0]=float(line[1])
-        elif line[0]=='alpha_max':
+        elif line[0]=='alpha_mid':
             parameters['alpha'][1]=float(line[1])
-        elif line[0]=='alpha_var':
+        elif line[0]=='alpha_max':
             parameters['alpha'][2]=float(line[1])
 
         elif line[0]=='max_iter_min':
@@ -29,7 +29,7 @@ def parse_parameters(file_path='config.txt'):
         
         elif line[0]=='Use':
             parameters['neibors'].append(list(map(int,line[1:])))
-            
+
         elif line[0]=='teste_dir':
             parameters['teste_dir']=line[1]
             

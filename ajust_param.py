@@ -6,22 +6,27 @@ import pandas as pd
 parametros=parse_parameters()
 dir=parametros['teste_dir']
 
-dados=[[],[],[]]
+
+
 
 for instance in read_dir(dir):
-    for i in range(3):
-        sol=run_instance(dir+'/'+isinstance,parametros['alpha'][i],max_iter=100000)
-        
+    dados={'alpha':[],'max_iter':[],'neibors':[],'custo':[]}
+    for alpha in parametros['alpha']:
+        for max_iter in parametros['max_iter']:
+            for neibor in parametros['neibors']:
+                 instance_path=dir+'/'+instance
+                 sol=run_instance(instance_path,alpha,max_iter,neibor)
+                 dados['alpha'].append(alpha)
+                 dados['max_iter'].append(max_iter)
+                 dados['neibors'].append(neibor)
+                 dados['custo'].append(sol['Custo'])
+    df = pd.DataFrame(dados)
+    print(df.to_string(index=False))
+    df.to_csv("Output/Ajuste_de_parametros/"+instance[:-3]+"json", index=False)
+
+                 
 
 
 
 
 
-colunas = pd.MultiIndex.from_tuples([
-    ("alpha", "min"),
-    ("alpha", "alpha_var"),
-    ("alpha", "alpha_max"),
-    ("max_iter", "max_iter_min"),
-    ("max_iter", "max_iter_mid"),
-    ("max_iter", "max_iter_max"),
-    ("neibors", "valor")])

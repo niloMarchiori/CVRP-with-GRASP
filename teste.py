@@ -8,4 +8,5 @@ data = {
 }
 
 df = pd.DataFrame(data)
-df.to_csv("out.csv", index=False)
+print(df.to_string(index=False))
+df.to_csv(f/out.csv", index=False)
