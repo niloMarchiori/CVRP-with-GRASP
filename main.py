@@ -1,44 +1,31 @@
-<<<<<<< HEAD
-=======
 import os
-import vrplib
-from Models.GRASP import *
-from time import time
+import sys
+from Scripts.run_instance import *
+import pandas as pd
 
+def read_dir(instance_directory):
+    directory_path=instance_directory
+    files_names=[]
+    if os.path.exists(directory_path) and os.path.isdir(directory_path):
+        for item in os.listdir(directory_path):
+            item_path = os.path.join(directory_path, item)
+            if os.path.isfile(item_path) and item[-1]!='l':
+                files_names.append(item)
+    else:
+        print(f'O diretório {directory_path} não existe ou não é um diretório.')
+
+    files_names=sorted(files_names)
+    return files_names
 
 def main():
-    instance = vrplib.read_instance(f'A-n32-k5.vrp')
-    
-    coment=instance['comment'].split()
-    bks=int(coment[-1][:-1])
-
-    for i in range(instance['dimension']):
-        for j in range(i,instance['dimension']):
-            instance['edge_weight'][i][j]=int(round(instance['edge_weight'][i][j]))
-            instance['edge_weight'][j][i]=int(round(instance['edge_weight'][i][j]))
-    
-    graph=Graph(instance['dimension'])
-    graph.set_adj(instance['edge_weight'])
-    graph.set_demand(instance['demand'])
-    max_capacity=instance['capacity']
-    max_iter=1000
-    
-
-    for i in range(11):
-        alpha=i/10
-        inicio=time()
-        solution=GRASP(graph,max_capacity, max_iter,alpha)
-        fim=time()
-        print('alpha:',alpha)
-        print('Tempo: ', (fim-inicio))
-        print(f"Erro:  {(solution.cost-bks)/bks*100:.0f} ")
-        print(solution)
-        print(solution.cost)
-    
-    
-
+    for X in ['A','B','C']:
+        instances_path=read_dir(f'Instances/{X}')
+        rows=[]
+        for instance in instances_path:
+            dados=run_instance(instance,max_iter=100)
+            rows.append(dados)
+        df = pd.concat([df, pd.DataFrame(rows)], ignore_index=True)
+        print(df)
+        df.to_csv(f"Output/Instance_{X}/out_{X}.csv", index=False)
 if __name__=='__main__':
-    # main('./Instances_A/',k_max=10)
     main()
-    
->>>>>>> 0336dde49bd6526006b83ffca1652124c00631cb

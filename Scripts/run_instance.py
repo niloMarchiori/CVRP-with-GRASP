@@ -3,7 +3,7 @@ from Models.GRASP import *
 from time import time
 
 
-def run_instance(alpha=0.35,max_iter=10000):
+def run_instance(instancia:str,alpha=0.35,max_iter=50000):
 
     instance = vrplib.read_instance(instancia)
     
@@ -20,15 +20,16 @@ def run_instance(alpha=0.35,max_iter=10000):
     graph.set_demand(instance['demand'])
     max_capacity=instance['capacity']
     
-    dados={'Custo':0,'Tempo':0,'Best_temp':0,'n_iter':0,'Erro':0}
+    dados={'Instance_name':instance['name'], 'Custo':0,'Tempo':0,'Best_temp':0,'n_iter':0,'Erro':0}
     avrg_temp=0
     avrg_custo=0
     avrg_best_temp=0
     avrg_n_iter=0
     avrg_err=0
-    for i in range(5):
+    for i in range(1):
         inicio=time()
         solution,best_temp,n_iter=GRASP(graph,max_capacity, max_iter,alpha)
+        print(solution)
         fim=time()
         avrg_temp+=fim-inicio
         avrg_custo+=solution.cost
