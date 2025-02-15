@@ -13,7 +13,7 @@ class Solution():
         self.candidates= [False for _ in range(graph.size)]
         self.candidates= [False for _ in range(graph.size)]
 
-    def insert_node(self,node:int, graph:Graph,route=-1):
+    
     def insert_node(self,node:int, graph:Graph,route=-1):
         '''Insere o nó 'node' à rota 'route' '''
       

@@ -47,11 +47,7 @@ def creat_RCL(include_costs:dict,graph:Graph,solution:Solution,candidates:list,a
     route=solution.routes[-1]
     last_node=route[-1]
     last_node=route[-1]
-
-    for next_node in range(graph.size):
-        if not candidates[next_node]: continue
-        if solution.free_capacity[-1]-graph.demand[next_node]<0: continue
-        if graph.adj[last_node][next_node]<=(min_cost+alpha*(max_cost-min_cost)):
+    
     for next_node in range(graph.size):
         if not candidates[next_node]: continue
         if solution.free_capacity[-1]-graph.demand[next_node]<0: continue

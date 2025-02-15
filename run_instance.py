@@ -3,7 +3,7 @@ from Models.GRASP import *
 from time import time
 
 
-def run_instance(instancia:str,alpha=0.35,max_iter=10000):
+def run_instance(alpha=0.35,max_iter=10000):
 
     instance = vrplib.read_instance(f'A-n32-k5.vrp')
     
@@ -61,5 +61,5 @@ def run_instance(instancia:str,alpha=0.35,max_iter=10000):
     
 
 if __name__=='__main__':
-    # main('./Instances_A/',k_max=10)
+    run_instance()
     pass
