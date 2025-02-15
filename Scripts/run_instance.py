@@ -26,16 +26,17 @@ def run_instance(instancia:str,alpha=0.35,max_iter=50000):
     avrg_best_temp=0
     avrg_n_iter=0
     avrg_err=0
-    for i in range(1):
+    for i in range(5):
         inicio=time()
         solution,best_temp,n_iter=GRASP(graph,max_capacity, max_iter,alpha)
-        print(solution)
+        # print(solution)
         fim=time()
         avrg_temp+=fim-inicio
         avrg_custo+=solution.cost
         avrg_best_temp+=best_temp
         avrg_n_iter+=n_iter
         avrg_err+=(solution.cost-bks)/bks
+        print(f"Erro:  {(solution.cost-bks)/bks*100:.0f} ")
     
 
     avrg_best_temp/=5
@@ -55,7 +56,6 @@ def run_instance(instancia:str,alpha=0.35,max_iter=50000):
 
         # print('alpha:',alpha)
         # print('Tempo: ', (fim-inicio))
-        # print(f"Erro:  {(solution.cost-bks)/bks*100:.0f} ")
         # print(solution)
         # print(solution.cost)
     

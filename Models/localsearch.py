@@ -1,15 +1,10 @@
 from Models.solution import Solution
 from Models.graph import Graph
-from Models.solution import Solution
-from Models.graph import Graph
-
 
 def is_better(curr_cost:int,node_i:int,node_j:int,node_x:int,node_y:int,graph:Graph):
     economy_ij=graph.adj[node_i][node_j]
     economy_xy=graph.adj[node_x][node_y]
 
-    cost_ix=graph.adj[node_i][node_x]
-    cost_jy=graph.adj[node_j][node_y]
     cost_ix=graph.adj[node_i][node_x]
     cost_jy=graph.adj[node_j][node_y]
 
@@ -18,7 +13,6 @@ def is_better(curr_cost:int,node_i:int,node_j:int,node_x:int,node_y:int,graph:Gr
     if new_cost<curr_cost:
         return True
     return False
-
 
 def move_two_opt(solution:Solution,route:list,i:int,x:int,graph:Graph):
     node_i=route[i]
@@ -30,15 +24,8 @@ def move_two_opt(solution:Solution,route:list,i:int,x:int,graph:Graph):
 
     cost_ix=graph.adj[node_i][node_x]
     cost_jy=graph.adj[node_j][node_y]
-    cost_ix=graph.adj[node_i][node_x]
-    cost_jy=graph.adj[node_j][node_y]
 
     solution.cost=solution.cost-economy_ij-economy_xy+cost_ix+cost_jy
-    
-    route_xj=route[x:i:-1]
-    
-    route[i+1:x+1]=route_xj
-
     
     route_xj=route[x:i:-1]
     

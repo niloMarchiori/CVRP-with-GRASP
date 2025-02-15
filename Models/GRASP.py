@@ -59,7 +59,6 @@ def random_include(RCL:list,candidates:list,solution:Solution,graph:Graph):
     i=rd.randint(0,len(RCL)-1)
     choosed_node=RCL[i]
     candidates[choosed_node]=False
-    candidates[choosed_node]=False
     # INICO TESTE -----------------------
     # global lista
     # node_ID= lista.pop(0)
@@ -87,8 +86,6 @@ def Greedy_Randomized_Construction(graph:Graph,max_capacity:int,alpha:float):
         n+=1
         include_costs=update_costs(graph,solution,candidates)
 
-    for route in range(len(solution.routes)):
-        solution.insert_node(0,graph,route)
     for route in range(len(solution.routes)):
         solution.insert_node(0,graph,route)
 

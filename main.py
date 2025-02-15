@@ -18,14 +18,15 @@ def read_dir(instance_directory):
     return files_names
 
 def main():
-    for X in ['A','B','C']:
+    for X in ['A','B','F']:
         instances_path=read_dir(f'Instances/{X}')
         rows=[]
+        df=pd.DataFrame(columns=['Instance_name', 'Custo','Tempo','Best_temp','n_iter','Erro'])
         for instance in instances_path:
-            dados=run_instance(instance,max_iter=100)
+            dados=run_instance(f'Instances/{X}/{instance}',max_iter=1000)
             rows.append(dados)
         df = pd.concat([df, pd.DataFrame(rows)], ignore_index=True)
-        print(df)
+        # print(df)
         df.to_csv(f"Output/Instance_{X}/out_{X}.csv", index=False)
 if __name__=='__main__':
     main()
