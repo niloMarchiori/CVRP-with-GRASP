@@ -5,7 +5,7 @@ from time import time
 
 def run_instance(alpha=0.35,max_iter=10000):
 
-    instance = vrplib.read_instance(f'A-n32-k5.vrp')
+    instance = vrplib.read_instance(instancia)
     
     coment=instance['comment'].split()
     bks=int(coment[-1][:-1])
@@ -61,5 +61,4 @@ def run_instance(alpha=0.35,max_iter=10000):
     
 
 if __name__=='__main__':
-    run_instance()
-    pass
+    print(run_instance('A-n32-k5.vrp'))
