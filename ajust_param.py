@@ -10,7 +10,7 @@ dir=parametros['teste_dir']
 
 
 for instance in read_dir(dir):
-    dados={'alpha':[],'max_iter':[],'neibors':[],'custo':[]}
+    dados={'alpha':[],'max_iter':[],'neibors':[],'custo':[],'tempo':[]}
     for alpha in parametros['alpha']:
         for max_iter in parametros['max_iter']:
             for neibor in parametros['neibors']:
@@ -20,6 +20,8 @@ for instance in read_dir(dir):
                  dados['max_iter'].append(max_iter)
                  dados['neibors'].append(neibor)
                  dados['custo'].append(sol['Custo'])
+                 dados['tempo'].append(sol['Tempo'])
+
     df = pd.DataFrame(dados)
     print(df.to_string(index=False))
     df.to_csv("Output/Ajuste_de_parametros/"+instance[:-3]+"csv", index=False)
