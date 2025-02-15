@@ -101,9 +101,9 @@ def GRASP(graph,max_capacity, max_iter,alpha,neibors=[0,1]):
 
     iter_count=0
     temp_best=0
-    for _ in range(max_iter) or (time.time()-inicio)>300:
+    while iter_count <= max_iter and (time.time()-inicio)<=300:
         if (time.time()-inicio)>240:
-            print((time.time()-inicio))
+            print("!!!!!!!!Tempo",(time.time()-inicio))
         curr_solution=Greedy_Randomized_Construction(graph,max_capacity,alpha)
         curr_solution=local_search(curr_solution,graph,neibors)
         if curr_solution.cost<best_solution.cost:
