@@ -24,3 +24,4 @@ print(iteracao)
 
 for key in posiveis:
     print(key, posiveis[key])
+

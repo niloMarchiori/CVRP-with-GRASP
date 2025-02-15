@@ -1,6 +1,8 @@
 import random as rd
 from Models.graph import Graph
+from Models.graph import Graph
 from Models.solution import Solution
+from Models.localsearch import local_search
 from Models.localsearch import local_search
 import time
 
@@ -10,16 +12,25 @@ def update_costs(graph:Graph,solution:Solution, candidates:list):
     min_cost=float('inf')
     route=solution.routes[-1]
     last_node=route[-1]
+    last_node=route[-1]
 
     free_capacity=solution.free_capacity[-1]
+    free_capacity=solution.free_capacity[-1]
 
+    for next_node in range(graph.size):
+        demand=graph.demand[next_node]
     for next_node in range(graph.size):
         demand=graph.demand[next_node]
         full= (free_capacity-demand)<0
         if candidates[next_node] and not full:
             if max_cost<graph.adj[last_node][next_node]:
                 max_cost=graph.adj[last_node][next_node]
+        if candidates[next_node] and not full:
+            if max_cost<graph.adj[last_node][next_node]:
+                max_cost=graph.adj[last_node][next_node]
 
+            if min_cost>graph.adj[last_node][next_node]:
+                min_cost=graph.adj[last_node][next_node]
             if min_cost>graph.adj[last_node][next_node]:
                 min_cost=graph.adj[last_node][next_node]
 
@@ -35,7 +46,12 @@ def creat_RCL(include_costs:dict,graph:Graph,solution:Solution,candidates:list,a
     
     route=solution.routes[-1]
     last_node=route[-1]
+    last_node=route[-1]
 
+    for next_node in range(graph.size):
+        if not candidates[next_node]: continue
+        if solution.free_capacity[-1]-graph.demand[next_node]<0: continue
+        if graph.adj[last_node][next_node]<=(min_cost+alpha*(max_cost-min_cost)):
     for next_node in range(graph.size):
         if not candidates[next_node]: continue
         if solution.free_capacity[-1]-graph.demand[next_node]<0: continue
@@ -46,6 +62,7 @@ def creat_RCL(include_costs:dict,graph:Graph,solution:Solution,candidates:list,a
 def random_include(RCL:list,candidates:list,solution:Solution,graph:Graph):
     i=rd.randint(0,len(RCL)-1)
     choosed_node=RCL[i]
+    candidates[choosed_node]=False
     candidates[choosed_node]=False
     # INICO TESTE -----------------------
     # global lista
@@ -76,6 +93,8 @@ def Greedy_Randomized_Construction(graph:Graph,max_capacity:int,alpha:float):
 
     for route in range(len(solution.routes)):
         solution.insert_node(0,graph,route)
+    for route in range(len(solution.routes)):
+        solution.insert_node(0,graph,route)
 
     return solution
 
@@ -92,6 +111,7 @@ def GRASP(graph,max_capacity, max_iter,alpha):
     for _ in range(max_iter) or (time.time()-inicio)>300:
         
         curr_solution=Greedy_Randomized_Construction(graph,max_capacity,alpha)
+        curr_solution=local_search(curr_solution,graph)
         curr_solution=local_search(curr_solution,graph)
         if curr_solution.cost<best_solution.cost:
             best_solution=curr_solution
