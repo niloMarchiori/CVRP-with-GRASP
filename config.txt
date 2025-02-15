@@ -1,0 +1,19 @@
+################# CALIBRAÇÂO DOS PARÂMETROS #################
+Parametro alpha----------------------------------------------
+alpha_min 0
+alpha_max 1
+alpha_var 0.1
+
+Parametro max_iter-------------------------------------------
+max_iter_min 5000
+max_iter_mid 250000
+max_iter_max 100000
+
+Parametro neibors--------------------------------------------
+''' 0: 2-opt intra rota       1: swap inter rotas'''
+Use 0
+Use 1
+Use 0 1
+
+Instancias de teste------------------------------------------
+teste_dir Instances_param

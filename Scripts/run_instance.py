@@ -20,7 +20,7 @@ def run_instance(instancia:str,alpha=0.35,max_iter=50000):
     graph.set_demand(instance['demand'])
     max_capacity=instance['capacity']
     
-    dados={'Instance_name':instance['name'], 'Custo':0,'Tempo':0,'Best_temp':0,'n_iter':0,'Erro':0}
+    dados={'Instance_name':instance['name'],'BKS':bks, 'Custo':0,'Tempo':0,'Best_temp':0,'n_iter':0,'Erro':0}
     avrg_temp=0
     avrg_custo=0
     avrg_best_temp=0
@@ -36,20 +36,15 @@ def run_instance(instancia:str,alpha=0.35,max_iter=50000):
         avrg_best_temp+=best_temp
         avrg_n_iter+=n_iter
         avrg_err+=(solution.cost-bks)/bks
-        print(f"Erro:  {(solution.cost-bks)/bks*100:.0f} ")
+        # print(f"Erro:  {(solution.cost-bks)/bks*100:.0f} ")
+        print(instance['name'],'OK')
     
 
-    avrg_best_temp/=5
-    avrg_custo/=5
-    avrg_n_iter/=5
-    avrg_temp/=5
-    avrg_err/=5
-
-    dados['Bes_tempo']=avrg_best_temp
-    dados['Custo']=avrg_custo
-    dados['n_iter']=avrg_n_iter
-    dados['Tempo']=avrg_temp
-    dados['Erro']=avrg_err
+    dados['Bes_tempo']=avrg_best_temp/5
+    dados['Custo']=avrg_custo/5
+    dados['n_iter']=avrg_n_iter/5
+    dados['Tempo']=avrg_temp/5
+    dados['Erro']=avrg_err/5
 
     return dados
 
