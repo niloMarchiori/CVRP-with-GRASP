@@ -29,6 +29,7 @@ def parse_parameters(file_path='config.txt'):
         
         elif line[0]=='Use':
             parameters['neibors'].append(list(map(int,line[1:])))
+            
         elif line[0]=='teste_dir':
             parameters['teste_dir']=line[1]
             

@@ -103,11 +103,17 @@ def swap(solution:Solution,graph:Graph):
 
 
 
-def local_search(solution:Solution,graph:Graph):
+def local_search(solution:Solution,graph:Graph,neibors=[0,1]):
     improvement_found = True
     curr_cost=solution.cost
+    
+    neibor=[]
+    for n in neibors:
+        if n ==0:
+            neibor.append(two_opt)
+        if n==1:
+            neibor.append(swap)
     i=0
-    neibor=[two_opt,swap]
     while improvement_found:
         solution=neibor[i](solution,graph)
         if curr_cost>solution.cost:

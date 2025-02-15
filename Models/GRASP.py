@@ -94,7 +94,7 @@ def Greedy_Randomized_Construction(graph:Graph,max_capacity:int,alpha:float):
 # # INICO TESTE -----------------------
 # lista=[14,6,2,4,22,18,28,3,23,8,29,27,1,21,31,17,13,19,20,15,11,9,25,10,5,24,26,16,30,12,7]
 # FIM TESTE   -----------------------
-def GRASP(graph,max_capacity, max_iter,alpha):
+def GRASP(graph,max_capacity, max_iter,alpha,neibors=[0,1]):
 
     best_solution=Solution(graph,max_capacity,cost=float('inf'))
     inicio=time.time()
@@ -105,7 +105,7 @@ def GRASP(graph,max_capacity, max_iter,alpha):
         if (time.time()-inicio)>240:
             print((time.time()-inicio))
         curr_solution=Greedy_Randomized_Construction(graph,max_capacity,alpha)
-        curr_solution=local_search(curr_solution,graph)
+        curr_solution=local_search(curr_solution,graph,neibors)
         if curr_solution.cost<best_solution.cost:
             best_solution=curr_solution
             temp_best=time.time()-inicio

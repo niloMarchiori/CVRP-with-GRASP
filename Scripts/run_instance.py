@@ -3,7 +3,7 @@ from Models.GRASP import *
 from time import time
 
 
-def run_instance(instancia:str,alpha=0.35,max_iter=50000):
+def run_instance(instancia:str,alpha=0.35,max_iter=50000,neibors=[0,1]):
 
     instance = vrplib.read_instance(instancia)
     
@@ -28,7 +28,7 @@ def run_instance(instancia:str,alpha=0.35,max_iter=50000):
     avrg_err=0
     for i in range(5):
         inicio=time()
-        solution,best_temp,n_iter=GRASP(graph,max_capacity, max_iter,alpha)
+        solution,best_temp,n_iter=GRASP(graph,max_capacity, max_iter,alpha,neibors)
         # print(solution)
         fim=time()
         avrg_temp+=fim-inicio

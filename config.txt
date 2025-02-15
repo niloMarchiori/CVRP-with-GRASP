@@ -1,7 +1,7 @@
 ################# CALIBRAÇÂO DOS PARÂMETROS #################
 Parametro alpha----------------------------------------------
 alpha_min 0
-alpha_max 1
+alpha_mid 1
 alpha_var 0.1
 
 Parametro max_iter-------------------------------------------
