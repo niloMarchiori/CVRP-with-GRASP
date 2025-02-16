@@ -15,7 +15,7 @@ def main():
         ##==============================
         for instance in instances_path:
             try:
-                dados=run_instance(f'Instances/{X}/{instance}',alpha=0.1,max_iter=50000,neibors=[0,1])
+                dados=run_instance(f'Instances/{X}/{instance}',alpha=0.1,max_iter=10000,neibors=[0,1])
                 rows.append(dados)
                 print(instance, 'OK')
             except:
@@ -28,5 +28,5 @@ def main():
         if stop:
             break
 if __name__=='__main__':
-    gera_grafico_An32k5()
-    # main()
+    # gera_grafico_An32k5()
+    main()
