@@ -10,10 +10,10 @@ def main():
         rows=[]
         df=pd.DataFrame(columns=['Instance_name', 'Custo','Tempo','Best_temp','n_iter','Erro'])
         for instance in instances_path:
-            dados=run_instance(f'Instances/{X}/{instance}',max_iter=100)
+            dados=run_instance(f'Instances/{X}/{instance}',alpha=0.1,max_iter=10000)
             rows.append(dados)
-        df = pd.concat([df, pd.DataFrame(rows)], ignore_index=True)
-        # print(df)
+            df = pd.concat([df, pd.DataFrame(rows)], ignore_index=True)
+            print(df)
         df.to_csv(f"Output/Instance_{X}/out_{X}.csv", index=False)
 if __name__=='__main__':
     main()

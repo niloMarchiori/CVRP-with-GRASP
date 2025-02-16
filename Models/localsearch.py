@@ -20,6 +20,7 @@ def move_two_opt(solution:Solution,route:list,i:int,x:int,graph:Graph):
     node_j=route[i+1]
     node_x=route[x]
     node_y=route[x+1]
+    
     economy_ij=graph.adj[node_i][node_j]
     economy_xy=graph.adj[node_x][node_y]
 

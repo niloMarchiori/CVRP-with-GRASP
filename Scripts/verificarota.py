@@ -1,6 +1,6 @@
 import vrplib
 
-instance = vrplib.read_instance(f'A-n32-k5.vrp')
+instance = vrplib.read_instance(f'Instances/A/A-n32-k5.vrp')
 for i in range(instance['dimension']):
     for j in range(i,instance['dimension']):
         instance['edge_weight'][i][j]=int(round(instance['edge_weight'][i][j]))

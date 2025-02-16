@@ -12,27 +12,19 @@ def update_costs(graph:Graph,solution:Solution, candidates:list):
     min_cost=float('inf')
     route=solution.routes[-1]
     last_node=route[-1]
-    last_node=route[-1]
 
-    free_capacity=solution.free_capacity[-1]
+    
     free_capacity=solution.free_capacity[-1]
 
-    for next_node in range(graph.size):
-        demand=graph.demand[next_node]
     for next_node in range(graph.size):
         demand=graph.demand[next_node]
         full= (free_capacity-demand)<0
         if candidates[next_node] and not full:
             if max_cost<graph.adj[last_node][next_node]:
                 max_cost=graph.adj[last_node][next_node]
-        if candidates[next_node] and not full:
-            if max_cost<graph.adj[last_node][next_node]:
-                max_cost=graph.adj[last_node][next_node]
-
             if min_cost>graph.adj[last_node][next_node]:
                 min_cost=graph.adj[last_node][next_node]
-            if min_cost>graph.adj[last_node][next_node]:
-                min_cost=graph.adj[last_node][next_node]
+            
 
     include_costs={'min_cost':min_cost,'max_cost':max_cost}
     
@@ -46,7 +38,6 @@ def creat_RCL(include_costs:dict,graph:Graph,solution:Solution,candidates:list,a
     
     route=solution.routes[-1]
     last_node=route[-1]
-    last_node=route[-1]
     
     for next_node in range(graph.size):
         if not candidates[next_node]: continue
@@ -59,12 +50,6 @@ def random_include(RCL:list,candidates:list,solution:Solution,graph:Graph):
     i=rd.randint(0,len(RCL)-1)
     choosed_node=RCL[i]
     candidates[choosed_node]=False
-    # INICO TESTE -----------------------
-    # global lista
-    # node_ID= lista.pop(0)
-    # choosed_node=solution.NODES[node_ID]
-    # candidates[choosed_node.node_ID]=False
-    # FIM TESTE   -----------------------
 
     solution.insert_node(choosed_node,graph)
     
@@ -91,9 +76,7 @@ def Greedy_Randomized_Construction(graph:Graph,max_capacity:int,alpha:float):
 
     return solution
 
-# # INICO TESTE -----------------------
-# lista=[14,6,2,4,22,18,28,3,23,8,29,27,1,21,31,17,13,19,20,15,11,9,25,10,5,24,26,16,30,12,7]
-# FIM TESTE   -----------------------
+
 def GRASP(graph,max_capacity, max_iter,alpha,neibors=[0,1]):
 
     best_solution=Solution(graph,max_capacity,cost=float('inf'))
@@ -101,7 +84,7 @@ def GRASP(graph,max_capacity, max_iter,alpha,neibors=[0,1]):
 
     iter_count=0
     temp_best=0
-    while iter_count <= max_iter and (time.time()-inicio)<=300:
+    while iter_count < max_iter and (time.time()-inicio)<=300:
         iter_count+=1
         curr_solution=Greedy_Randomized_Construction(graph,max_capacity,alpha)
         curr_solution=local_search(curr_solution,graph,neibors)
