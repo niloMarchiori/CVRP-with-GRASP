@@ -21,7 +21,9 @@ for instance in read_dir(dir):
                  dados['neibors'].append(neibor)
                  dados['custo'].append(sol['Custo'])
                  dados['tempo'].append(sol['Tempo'])
+        df = pd.DataFrame(dados)
+        df.to_csv("Output/Ajuste_de_parametros/"+instance[:-3]+"csv", index=False)
+
     print(instance, 'OK')
     df = pd.DataFrame(dados)
-    print(df.to_string(index=False))
     df.to_csv("Output/Ajuste_de_parametros/"+instance[:-3]+"csv", index=False)

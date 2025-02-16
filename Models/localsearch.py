@@ -1,5 +1,6 @@
 from Models.solution import Solution
 from Models.graph import Graph
+import time
 
 def is_better(curr_cost:int,node_i:int,node_j:int,node_x:int,node_y:int,graph:Graph):
     economy_ij=graph.adj[node_i][node_j]
@@ -114,7 +115,8 @@ def local_search(solution:Solution,graph:Graph,neibors=[0,1]):
         if n==1:
             neibor.append(swap)
     i=0
-    while improvement_found:
+    inicio=time.time()
+    while improvement_found and time.time()-inicio<300:
         solution=neibor[i](solution,graph)
         if curr_cost>solution.cost:
             improvement_found=True
