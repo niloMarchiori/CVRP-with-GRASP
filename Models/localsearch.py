@@ -100,10 +100,6 @@ def swap(solution:Solution,graph:Graph):
     return solution
 
                     
-
-
-
-
 def local_search(solution:Solution,graph:Graph,neibors=[0,1]):
     improvement_found = True
     curr_cost=solution.cost
@@ -117,6 +113,8 @@ def local_search(solution:Solution,graph:Graph,neibors=[0,1]):
     i=0
     inicio=time.time()
     while improvement_found and time.time()-inicio<300:
+        if time.time()-inicio>=298:
+            print("!!! LS DEMORANDO",time.time()-inicio>=298)
         solution=neibor[i](solution,graph)
         if curr_cost>solution.cost:
             improvement_found=True

@@ -6,13 +6,11 @@ import pandas as pd
 parametros=parse_parameters()
 dir=parametros['teste_dir']
 
-
-
-
 for instance in read_dir(dir):
     dados={'alpha':[],'max_iter':[],'neibors':[],'custo':[],'tempo':[]}
     for alpha in parametros['alpha']:
         for max_iter in parametros['max_iter']:
+            print(instance,alpha,max_iter)
             for neibor in parametros['neibors']:
                  instance_path=dir+'/'+instance
                  sol=run_instance(instance_path,alpha,max_iter,neibor)

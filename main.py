@@ -17,3 +17,6 @@ def main():
         df.to_csv(f"Output/Instance_{X}/out_{X}.csv", index=False)
 if __name__=='__main__':
     main()
+
+
+# ['Instance_name','BKS','Best_cost','Avrg_cost','Best_temp','Avrg_temp','Best_gap','Avrg_gap','n_iter']
