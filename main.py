@@ -15,7 +15,7 @@ def main():
         
         for instance in instances_path:
             try:
-                dados=run_instance(f'{dir}/{instance}',alpha=0.15,max_iter=10000,neibors=[0,1])
+                dados=run_instance(f'{dir}/{instance}',alpha=0.15,max_iter=15000,neibors=[0,1])
                 rows.append(dados)
                 print(instance, 'OK')
             except:
@@ -28,5 +28,5 @@ def main():
         if stop:
             break
 if __name__=='__main__':
-    main()
     ajuste_param()
+    main()

@@ -4,8 +4,8 @@ from Scripts.run_instance import run_instance
 import pandas as pd
 import time
 def ajuste_param():
-    parametros={'alpha': [0.15, 0.25, 0.45],
-                'max_iter': [1000, 10000, 25000], 
+    parametros={'alpha': [0.15, 0.28, 0.45],
+                'max_iter': [1000, 15000, 30000], 
                 'neibors': [[0,1]], 
                 'teste_dir': 'Instances/Instances_param'}
 
@@ -32,3 +32,5 @@ def ajuste_param():
         print(instance, 'OK')
         df = pd.DataFrame(dados)
         df.to_csv("Output/Ajuste_de_parametros/"+instance[:-3]+"csv", index=False)
+if __name__=='__main__':
+    ajuste_param()
