@@ -49,7 +49,7 @@ def gera_grafico_An32k5():
 
     fig, ax = plt.subplots()
     ax.scatter(iteracoes, custos, color='blue', linewidth=0.5,s=s)
-    ax.scatter(iteracoes, b_custos, color='green', linewidth=0.8,s=s/2)
+    ax.scatter(iteracoes, b_custos, color='green', linewidth=0.8,s=s*2,label='BKS*')
 
     ax.axhline(y=784, color='red', linestyle='--', linewidth=1, label='BKS*')
 
@@ -78,7 +78,7 @@ def gera_grafico_An32k5():
     plt.colorbar(hb, label="Densidade de Pontos")
     ax.axhline(y=784, color='red', linestyle='--', linewidth=1, label='BKS*')
 
-    ax.scatter(iteracoes, b_custos, color='green', linewidth=0.8,s=s/2)
+    ax.scatter(iteracoes, b_custos, color='green', linewidth=0.8,s=s/2,label='Melhor solução')
 
 
     ax.set_title('Evolução dos custos de cada solução encontrada por iteração do GRASP', fontsize=14, fontname='Times New Roman')

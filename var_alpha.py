@@ -32,15 +32,15 @@ def main():
     
     for alpha in var_alpha:
         costs=[]
-        for i in range(1000):
-            dados=run_instance(instance,alpha,max_iter=10,neibors=[],n_iter=1)
+        for i in range(10000):
+            dados=run_instance(instance,alpha,max_iter=1,neibors=[],n_iter=1)
             costs.append(dados['Best_cost'])
         plot_save(costs,alpha,Output_dir,'SLS',"sem busca local")
     print('ok')
     for alpha in var_alpha:
         costs=[]
-        for i in range(1000):
-            dados=run_instance(instance,alpha,max_iter=10,neibors=[0,1],n_iter=1)
+        for i in range(10000):
+            dados=run_instance(instance,alpha,max_iter=1,neibors=[0,1],n_iter=1)
             costs.append(dados['Best_cost'])
         plot_save(costs,alpha,Output_dir,'CLS',"com busca local")
 
