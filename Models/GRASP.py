@@ -55,7 +55,7 @@ def random_include(RCL:list,candidates:list,solution:Solution,graph:Graph):
     
 
 
-def Greedy_Randomized_Construction(graph:Graph,max_capacity:int,alpha:float):
+def Greedy_Randomized_Construction(graph:Graph,max_capacity:int,alpha:float,draw=False):
     candidates=[True for _ in range(graph.size)]
     solution=Solution(graph,max_capacity)
     candidates[0]=False
@@ -67,6 +67,9 @@ def Greedy_Randomized_Construction(graph:Graph,max_capacity:int,alpha:float):
             include_costs=update_costs(graph,solution,candidates)
 
         RCL=creat_RCL(include_costs,graph,solution,candidates, alpha)
+        if draw:
+            print(solution)
+            print('\nRCL:',RCL)
         random_include(RCL,candidates,solution,graph)
         n+=1
         include_costs=update_costs(graph,solution,candidates)
@@ -74,10 +77,14 @@ def Greedy_Randomized_Construction(graph:Graph,max_capacity:int,alpha:float):
     for route in range(len(solution.routes)):
         solution.insert_node(0,graph,route)
 
+    if draw:
+        print('----------------------------------------------------')
+        print(solution)
+
     return solution
 
 
-def GRASP(graph,max_capacity, max_iter,alpha,neibors=[0,1]):
+def GRASP(graph,max_capacity, max_iter,alpha,neibors=[0,1],draw=False):
 
     best_solution=Solution(graph,max_capacity,cost=float('inf'))
     inicio=time.time()
@@ -86,10 +93,10 @@ def GRASP(graph,max_capacity, max_iter,alpha,neibors=[0,1]):
     temp_best=0
     while iter_count < max_iter and (time.time()-inicio)<=300:
         iter_count+=1
-        curr_solution=Greedy_Randomized_Construction(graph,max_capacity,alpha)
+        curr_solution=Greedy_Randomized_Construction(graph,max_capacity,alpha,draw)
         curr_solution=local_search(curr_solution,graph,neibors)
         if curr_solution.cost<best_solution.cost:
             best_solution=curr_solution
             temp_best=time.time()-inicio
 
-    return best_solution,temp_best,iter_count
+    return best_solution,temp_best

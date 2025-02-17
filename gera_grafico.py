@@ -6,6 +6,7 @@ import vrplib
 import matplotlib.pyplot as plt
 import time
 
+
 def GRASP_grafico(graph,max_capacity,alpha,neibors=[0,1]):
 
     best_solution=Solution(graph,max_capacity,cost=float('inf'))
@@ -95,3 +96,6 @@ def gera_grafico_An32k5():
     plt.savefig("Output/Grafico/grafico_heat.png", dpi=300)
     # Exibindo o gráfico
     plt.show()
+
+
+gera_grafico_An32k5()
