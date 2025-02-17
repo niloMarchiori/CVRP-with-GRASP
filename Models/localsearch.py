@@ -113,6 +113,8 @@ def local_search(solution:Solution,graph:Graph,neibors=[0,1]):
             neibor.append(swap)
     i=0
     inicio=time.time()
+    if not neibor:
+        return solution
     while improvement_found and time.time()-inicio<300:
         if time.time()-inicio>=298:
             print("!!! LS DEMORANDO",time.time()-inicio>=298)

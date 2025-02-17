@@ -1,6 +1,7 @@
 from Scripts.run_instance import run_instance
 from Scripts.read_dir import read_dir
 import pandas as pd
+from ajust_param import ajuste_param
 
 def main():
     stop=False
@@ -14,7 +15,7 @@ def main():
         
         for instance in instances_path:
             try:
-                dados=run_instance(f'{dir}/{instance}',alpha=0.1,max_iter=10000,neibors=[0,1])
+                dados=run_instance(f'{dir}/{instance}',alpha=0.15,max_iter=10000,neibors=[0,1])
                 rows.append(dados)
                 print(instance, 'OK')
             except:
@@ -28,3 +29,4 @@ def main():
             break
 if __name__=='__main__':
     main()
+    ajuste_param()

@@ -53,7 +53,7 @@ def gera_grafico_An32k5():
 
     ax.axhline(y=784, color='red', linestyle='--', linewidth=1, label='BKS*')
 
-    ax.set_title('Evolução dos custos de cada soluão encontrada por iteração do GRASP', fontsize=14, fontname='Times New Roman')
+    ax.set_title('Evolução dos custos de cada solução encontrada por iteração do GRASP', fontsize=14, fontname='Times New Roman')
     ax.set_xlabel('Iteração', fontsize=12, fontname='Times New Roman')
     ax.set_ylabel('Valor da função objetivo', fontsize=12, fontname='Times New Roman')
     ax.legend(fontsize=12, frameon=True)
@@ -81,7 +81,7 @@ def gera_grafico_An32k5():
     ax.scatter(iteracoes, b_custos, color='green', linewidth=0.8,s=s/2)
 
 
-    ax.set_title('Evolução dos custos de cada soluão encontrada por iteração do GRASP', fontsize=14, fontname='Times New Roman')
+    ax.set_title('Evolução dos custos de cada solução encontrada por iteração do GRASP', fontsize=14, fontname='Times New Roman')
     ax.set_xlabel('Iteração', fontsize=12, fontname='Times New Roman')
     ax.set_ylabel('Valor da função objetivo', fontsize=12, fontname='Times New Roman')
     ax.legend(fontsize=12, frameon=True)
