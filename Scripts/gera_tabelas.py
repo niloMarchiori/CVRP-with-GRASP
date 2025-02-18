@@ -1,7 +1,7 @@
 from Scripts.run_instance import run_instance
 from Scripts.read_dir import read_dir
 import pandas as pd
-from ajust_param import ajuste_param
+from Scripts.ajust_param import ajuste_param
 
 def gera_tabelas():
     stop=False
